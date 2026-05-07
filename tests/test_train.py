@@ -43,11 +43,12 @@ def test_train_returns_float(tmp_path):
     """Kiểm tra hàm train() trả về một số thực trong khoảng [0, 1]."""
     train_path, eval_path = _make_temp_data(tmp_path)
     
-    # Gọi hàm train với siêu tham số nhỏ
+    # Gọi hàm train với siêu tham số nhỏ và tắt MLflow
     acc = train(
         {"n_estimators": 10, "max_depth": 3, "min_samples_split": 2},
         data_path=train_path,
         eval_path=eval_path,
+        use_mlflow=False,
     )
     
     # Kiểm tra kết quả
@@ -63,6 +64,7 @@ def test_metrics_file_created(tmp_path):
         {"n_estimators": 10, "max_depth": 3, "min_samples_split": 2},
         data_path=train_path,
         eval_path=eval_path,
+        use_mlflow=False,
     )
     
     # Kiểm tra file tồn tại
@@ -85,6 +87,7 @@ def test_model_file_created(tmp_path):
         {"n_estimators": 10, "max_depth": 3, "min_samples_split": 2},
         data_path=train_path,
         eval_path=eval_path,
+        use_mlflow=False,
     )
     
     # Kiểm tra file tồn tại
