@@ -58,8 +58,17 @@ jobs:
       - name: Pull data with DVC
         run: dvc pull
 
+      - name: Setup MLflow
+        run: |
+          export MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+          export MLFLOW_ARTIFACT_ROOT=./mlartifacts
+          python -c "import mlflow; mlflow.set_tracking_uri('sqlite:///mlflow.db'); mlflow.create_experiment('0') if '0' not in [e.experiment_id for e in mlflow.search_experiments()] else None"
+
       - name: Train model
-        run: python src/train.py
+        run: |
+          export MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+          export MLFLOW_ARTIFACT_ROOT=./mlartifacts
+          python src/train.py
 
       - name: Read metrics
         id: read_metrics
