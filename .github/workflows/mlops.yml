@@ -150,7 +150,7 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             # Restart service
-            sudo systemctl restart mlops-serve
+            sudo systemctl restart cicd-server
             
             # Wait for service to start
             sleep 5
