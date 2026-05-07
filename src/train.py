@@ -54,9 +54,6 @@ def train(
     # TODO 1.5.3: Bắt đầu MLflow run (nếu enabled)
     if use_mlflow:
         mlflow.start_run()
-    # TODO 1.5.3: Bắt đầu MLflow run (nếu enabled)
-    if use_mlflow:
-        mlflow.start_run()
         
     # TODO 1.5.4: Ghi nhận các siêu tham số vào MLflow
     if use_mlflow:
